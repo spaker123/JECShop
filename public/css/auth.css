@@ -4,3 +4,7 @@
   margin: auto;
   display: block;
 }
+
+#imgPreview {
+  margin: 20px;
+}
