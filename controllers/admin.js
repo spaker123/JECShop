@@ -136,13 +136,16 @@ exports.postAddCategory = (req, res, next) => {
   }; 
 
 
-exports.getAddProduct = (req, res, next) => {  
+exports.getAddProduct = (req, res, next) => { 
+  Category.find(function (err, categories) { 
   res.render('admin/edit-product', {
     pageTitle: 'Add Product',
     path: '/admin/add-product',
+    categories: categories,
     editing: false,
     isAuthenticated: req.session.isLoggedIn
   });
+});
 };
 
 exports.postAddProduct = (req, res, next) => {
@@ -150,7 +153,7 @@ exports.postAddProduct = (req, res, next) => {
  
   const price = req.body.price;
   const description = req.body.description;
-
+  const category = req.body.category;
 	const s3Client = s3.s3Client;
 	const params = s3.uploadParams;
 
@@ -169,6 +172,7 @@ exports.postAddProduct = (req, res, next) => {
     title,
     price,
     description,
+    category,
     image:'https://s3.amazonaws.com/emily-project-123/'+params.Key,
     userId: req.user
   });
