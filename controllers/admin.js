@@ -60,7 +60,55 @@ exports.postAddCategory = (req, res, next) => {
 
   };
 
+  exports.getEditCategory = (req, res, next) => {
 
+    Category.findById(req.params.categoryId)
+      .then(category => {
+        if (!category) {
+          return res.redirect('/');
+        }
+        res.render('admin/edit-category', {
+          pageTitle: 'Edit Category',
+          path: '/admin/edit-category',
+          title: category.title,
+          id: category._id,
+          isAuthenticated: req.session.isLoggedIn
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+
+  exports.postEditCategory = (req, res, next) => {
+
+    const updatedTitle = req.body.title;
+    var updatedslug = updatedTitle.replace(/\s+/g, '-').toLowerCase();
+
+     console.log("update", updatedTitle);
+    Category.findById(req.params.categoryId)
+      .then(category => {
+        category.title = updatedTitle;
+        category.slug = updatedslug;
+        console.log("category", category);
+        return category.save();
+      })
+      .then(result => {
+        console.log('UPDATED Category!');
+        res.redirect('/admin/categories');
+      })
+      .catch(err => console.log(err));
+  };
+
+
+  exports.DeleteCategory = (req, res, next) => {
+
+    Category.findByIdAndRemove(req.params.categoryId)
+      .then(() => {
+        console.log('DESTROYED CATEGORY');
+        res.redirect('/admin/categories/');
+      })
+      .catch(err => console.log(err));
+  }; 
 
 
 exports.getAddProduct = (req, res, next) => {  

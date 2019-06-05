@@ -31,9 +31,10 @@ router.get('/categories',isAuth, adminController.getCategories);
 router.get('/add-category', isAuth, adminController.getAddCategory);
 router.post('/add-category',isAuth, adminController.postAddCategory);
 
-//router.post('/edit-category',isAuth, adminController.postEditCategory);
+router.post('/edit-category',isAuth, adminController.postEditCategory);
+router.post('/delete-category',isAuth, adminController.postDeleteCategory);
 
-//router.post('/delete-category',isAuth, adminController.postDeleteCategory);
+router.get('/delete-category/:categoryId',isAuth, adminController.DeleteCategory);
 
 
 module.exports = router;
