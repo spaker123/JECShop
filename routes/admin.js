@@ -23,4 +23,19 @@ router.post('/edit-product',isAuth, adminController.postEditProduct);
 
 router.post('/delete-product',isAuth, adminController.postDeleteProduct);
 
+// /admin/categories
+router.get('/categories',isAuth, adminController.getCategories);
+
+
+// /admin/add-category => GET & POST
+router.get('/add-category', isAuth, adminController.getAddCategory);
+router.post('/add-category',isAuth, adminController.postAddCategory);
+
+//router.post('/edit-category',isAuth, adminController.postEditCategory);
+
+//router.post('/delete-category',isAuth, adminController.postDeleteCategory);
+
+
 module.exports = router;
+
+

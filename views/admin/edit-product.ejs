@@ -4,7 +4,7 @@
 </head>
 
 <body>
-   <%- include('../includes/navigation.ejs') %>
+    <%- include('../includes/Admin_navigation.ejs') %>
 
     <main>
         <form class="product-form" enctype="multipart/form-data" action="/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>" method="POST">

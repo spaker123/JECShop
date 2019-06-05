@@ -1,6 +1,67 @@
 const Product = require('../models/product');
+const Category = require('../models/category');
 const s3 = require('../config/s3.config.js');
 const uuid=require('uuid/v1'); 
+
+
+exports.getCategories = (req, res, next) => {
+  Category.find()
+  .then(categories =>{
+    res.render('admin/categories', {
+      categories: categories,
+      pageTitle: 'Admin Categories',
+      path: '/admin/categories',
+      isAuthenticated: req.session.isLoggedIn
+  });
+  })
+  .catch(err => console.log(err)); 
+};
+
+
+exports.getAddCategory = (req, res, next) => {  
+  res.render('admin/add-category', {
+    pageTitle: 'Add Category',
+    path: '/admin/add-category',
+    isAuthenticated: req.session.isLoggedIn
+  });
+};
+
+
+
+exports.postAddCategory = (req, res, next) => {
+
+  var title = req.body.title;
+  var slug = title.replace(/\s+/g, '-').toLowerCase();
+
+
+  Category.findOne({slug: slug}, function (err, category) {
+    if (category) {
+      res.redirect('/admin/categories');
+      console.log("duplicate categories");
+    } else {
+        const category = new Category({
+            title: title,
+            slug: slug
+        });
+
+        category
+        .save()
+        .then(result => {
+          // console.log(result);
+          console.log('Created category');
+          res.redirect('/admin/categories');
+        })
+        .catch(err => {
+          console.log(err);
+        });    
+    }
+
+  });
+
+  };
+
+
+
 
 exports.getAddProduct = (req, res, next) => {  
   res.render('admin/edit-product', {
