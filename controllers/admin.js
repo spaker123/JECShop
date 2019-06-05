@@ -3,6 +3,10 @@ const Category = require('../models/category');
 const s3 = require('../config/s3.config.js');
 const uuid=require('uuid/v1'); 
 
+const s3Client = s3.s3Client;
+const params = s3.uploadParams;
+let name= uuid();
+
 
 exports.getCategories = (req, res, next) => {
   Category.find()
