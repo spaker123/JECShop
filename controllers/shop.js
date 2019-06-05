@@ -1,5 +1,22 @@
 const Product = require('../models/product');
 const Order = require('../models/order');
+const Category = require('../models/category');
+
+exports.getProductsbyCategory = (req, res, next) => {
+
+  Product.find({category:req.params.category})
+    .then(products => {
+      res.render('shop/product-list', {
+        prods: products,
+        pageTitle: products.category + 'Products',
+        path: '/products',
+        isAuthenticated: req.session.isLoggedIn
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
 
 exports.getProducts = (req, res, next) => {
   Product.find()
