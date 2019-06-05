@@ -3,10 +3,11 @@ const Category = require('../models/category');
 const s3 = require('../config/s3.config.js');
 const uuid=require('uuid/v1'); 
 
+
 const s3Client = s3.s3Client;
 const params = s3.uploadParams;
-let name= uuid();
 
+let name= uuid();
 
 exports.getCategories = (req, res, next) => {
   Category.find()
@@ -154,14 +155,10 @@ exports.getAddProduct = (req, res, next) => {
 
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
- 
   const price = req.body.price;
   const description = req.body.description;
   const category = req.body.category;
-	const s3Client = s3.s3Client;
-	const params = s3.uploadParams;
 
-  let name= uuid();
 	params.Key = name+req.file.originalname;
 	params.Body = req.file.buffer;
 
