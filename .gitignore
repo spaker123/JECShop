@@ -1,0 +1,4 @@
+node_modules
+config/database.js
+package-lock.json
+config/s3.env.js
