@@ -47,7 +47,14 @@ exports.postAddCategory = (req, res, next) => {
         category
         .save()
         .then(result => {
-          // console.log(result);
+
+          Category.find(function (err, categories) {
+            if (err) {
+                console.log(err);
+            } else {
+                req.app.locals.categories = categories;
+            }
+        });
           console.log('Created category');
           res.redirect('/admin/categories');
         })
@@ -93,6 +100,15 @@ exports.postAddCategory = (req, res, next) => {
         return category.save();
       })
       .then(result => {
+
+        Category.find(function (err, categories) {
+          if (err) {
+              console.log(err);
+          } else {
+              req.app.locals.categories = categories;
+          }
+      }); 
+
         console.log('UPDATED Category!');
         res.redirect('/admin/categories');
       })
@@ -102,8 +118,17 @@ exports.postAddCategory = (req, res, next) => {
 
   exports.DeleteCategory = (req, res, next) => {
 
-    Category.findByIdAndRemove(req.params.categoryId)
+    Category.findOneAndDelete({_id:req.params.categoryId})
       .then(() => {
+
+        Category.find(function (err, categories) {
+          if (err) {
+              console.log(err);
+          } else {
+              req.app.locals.categories = categories;
+          }
+      });
+
         console.log('DESTROYED CATEGORY');
         res.redirect('/admin/categories/');
       })

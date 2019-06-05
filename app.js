@@ -10,6 +10,7 @@ const errorController = require('./controllers/error');
 const User = require('./models/user');
 
 const {MONGODB_URI} = require('./config/database');
+const Category = require('./models/category');
 
 const app = express();
 const store = new MongoDBStore({
@@ -47,6 +48,17 @@ app.use((req, res, next) => {
     })
     .catch(err => console.log(err));
 });
+
+// Get all categories to pass to header.ejs
+Category.find(function (err, categories) {
+  if (err) {
+      console.log(err);
+  } else {
+      app.locals.categories = categories;
+  }
+});
+
+
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
