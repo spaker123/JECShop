@@ -220,15 +220,31 @@ exports.postEditProduct = (req, res, next) => {
   const prodId = req.body.productId;
   const updatedTitle = req.body.title;
   const updatedPrice = req.body.price;
-  const updatedImageUrl = req.body.imageUrl;
+  let updatedImage = req.body.image;
   const updatedDesc = req.body.description;
+
+  if (req.file.originalname){
+    params.Key = name+req.file.originalname;
+    params.Body = req.file.buffer;
+
+    s3Client.upload(params, (err, data) => {
+      if (err) {
+        res.status(500).json({error:"Error -> " + err});
+      }
+          console.log('File uploaded to S3 successfully!');
+        });
+
+      updatedImage='https://s3.amazonaws.com/emily-project-123/'+params.Key;   
+      }  
+
+
 
   Product.findById(prodId)
     .then(product => {
       product.title = updatedTitle;
       product.price = updatedPrice;
       product.description = updatedDesc;
-      product.imageUrl = updatedImageUrl;
+      product.image = updatedImage;
       return product.save();
     })
     .then(result => {
