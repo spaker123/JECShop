@@ -22,7 +22,12 @@ const userSchema = new Schema({
         quantity: { type: Number, required: true }
       }
     ]
-  }
+  },
+  admin: {
+    type: Number,
+    required:true,
+    default:0
+}
 });
 
 userSchema.methods.addToCart = function(product) {
