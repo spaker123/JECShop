@@ -293,7 +293,7 @@ exports.getProducts = (req, res, next) => {
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
 
-  Product.findOneAndDelete(prodId)
+  Product.findOneAndDelete({_id:prodId})
     .then(product =>{
       var updatedImage= product.image;
       var filename=updatedImage.slice(updatedImage.lastIndexOf('/')+1,updatedImage.length);
