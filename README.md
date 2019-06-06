@@ -1,7 +1,7 @@
-# Welcome to Node-JEShop Project #
+# Welcome to Node-JECShop Project #
 
 
-*Node-JEShop* is a e-shopping application using *Node.js, express.js, ejs, HTML, CSS, javascript,
+*Node-JECShop* is a e-shopping application using *Node.js, express.js, ejs, HTML, CSS, javascript,
  mongoDB, Mongoose, AWS.*
  
 
