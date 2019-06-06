@@ -158,6 +158,7 @@ exports.postAddProduct = (req, res, next) => {
   const price = req.body.price;
   const description = req.body.description;
   const category = req.body.category;
+  
 
 	params.Key = name+req.file.originalname;
 	params.Body = req.file.buffer;
@@ -220,7 +221,7 @@ exports.postEditProduct = (req, res, next) => {
   const prodId = req.body.productId;
   const updatedTitle = req.body.title;
   const updatedPrice = req.body.price;
-  let updatedImage = req.body.image;
+  let updatedImage ;
   const updatedDesc = req.body.description;
 
   if (req.file.originalname){
@@ -272,7 +273,25 @@ exports.getProducts = (req, res, next) => {
 
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  Product.findByIdAndRemove(prodId)
+  Product.findOneAndRemove(prodId)
+    .then(product =>{
+      var updatedImage= product.image;
+      var filename=updatedImage.slice(updatedImage.lastIndexOf('/')+1,updatedImage.length);
+      console.log(filename);
+      var params_d = {
+        Bucket: params.Bucket,
+        Key: filename
+    };
+
+    s3Client.deleteObject(params_d, function (err, data) {
+      if (data) {
+          console.log("S3 object deleted successfully");
+      }
+      else {
+          console.log("Check if you have sufficient permissions : "+err);
+      }
+  });
+    })
     .then(() => {
       console.log('DESTROYED PRODUCT');
       res.redirect('/admin/products');

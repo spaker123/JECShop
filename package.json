@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-JEShop",
+  "name": "nodejs-JECShop",
   "version": "1.0.0",
   "description": "Use Nodejs to build a shopcar website",
   "main": "app.js",
