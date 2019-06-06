@@ -3,6 +3,15 @@ const Order = require('../models/order');
 const stripe_config = require('../config/stripe.js');
 const stripe = require("stripe")(stripe_config.SE_ID);
 
+const paypal = require('paypal-rest-sdk');
+const paypal_config = require('../config/paypal.js');
+
+paypal.configure({
+  'mode': 'sandbox', 
+  'client_id': paypal_config.PAYPAL_CLIENT_ID,
+  'client_secret': paypal_config.PAYPAL_SECRET
+});
+
 
 
 
@@ -146,6 +155,84 @@ exports.postOrder = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
+exports.postOrder2 = (req, res, next) => {
+
+  const create_payment_json = {
+    "intent": "sale",
+    "payer": {
+        "payment_method": "paypal"
+    },
+    "redirect_urls": {
+        "return_url": "http://localhost:3000/process",
+        "cancel_url": "http://localhost:3000/cancel"
+    },
+    "transactions": [{
+        "item_list": {
+            "items": [{
+                "price": "25.00",
+                "currency": "USD",
+                "quantity": 1
+            }]
+        },
+        "amount": {
+            "currency": "USD",
+            "total": "25.00"
+        },
+        "description": "paypal test"
+    }]
+
+  }
+  
+
+  paypal.payment.create(create_payment_json, function(error, payment){
+    if (error) {
+      throw error;
+  } else {
+      for(let i = 0;i < payment.links.length;i++){
+        if(payment.links[i].rel === 'approval_url'){
+          res.redirect(payment.links[i].href);
+        }
+      }
+      console.log(payment);
+  }
+});
+};
+
+exports.getOrderProcess = (req, res, next) => {
+  const payerId = req.query.PayerID;
+  const paymentId = req.query.paymentId;
+
+  console.log('payerId', payerId);
+  console.log('paymentId',paymentId);
+
+  const execute_payment_json = {
+    "payer_id": payerId,
+    "transactions": [{
+        "amount": {
+            "currency": "USD",
+            "total": "25.00"
+        }
+    }]
+  };
+
+  paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
+    if (error) {
+        console.log(error.response);
+        throw error;
+    } else {
+        console.log(JSON.stringify(payment));
+        res.redirect('/orders');
+    }
+});
+}
+
+
+exports.getOrderCancel = (req, res, next) => {
+ console.log('cancel');
+}
+
+
+
 exports.getOrders = (req, res, next) => {
   Order.find({ 'user.userId': req.user._id })
     .then(orders => {
@@ -178,4 +265,27 @@ exports.getCheckout = (req, res, next) => {
       });
     })
     .catch(err => console.log(err));
+};
+
+
+exports.getCheckout2 = (req, res, next) => {
+  req.user
+    .populate('cart.items.productId')
+    .execPopulate()
+    .then(user => {
+      const products = user.cart.items;
+      let total = 0;
+      products.forEach(p => {
+        total += p.quantity * p.productId.price;
+      });
+      res.render('shop/checkout2', {
+        path: '/checkout2',
+        pageTitle: 'checkout2',
+        products: products,
+        totalSum: total,
+        isAuthenticated: req.session.isLoggedIn  
+      });
+    })
+    .catch(err => console.log(err));
+
 };

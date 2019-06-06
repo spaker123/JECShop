@@ -26,4 +26,10 @@ router.get('/orders',isUser, shopController.getOrders);
 
 router.get('/checkout',isUser,shopController.getCheckout);
 
+//paypal
+router.post('/create-order2',isUser, shopController.postOrder2);
+router.get('/checkout2', shopController.getCheckout2);
+router.get('/process', shopController.getOrderProcess);
+router.get('/cancel', shopController.getOrderCancel);
+
 module.exports = router;
