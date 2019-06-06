@@ -3,7 +3,11 @@
     </head>
 
     <body>
-        <%- include('../includes/navigation.ejs') %>
+        <% if (isAuthenticated && user.admin==1) { %>
+            <%- include('../includes/Admin_navigation.ejs') %>
+            <% } else { %>
+                <%- include('../includes/navigation.ejs') %>
+                <% } %>
 
             <main>
                 <% if (prods.length > 0) { %>
@@ -28,7 +32,7 @@
                                 </div>
                                 <div class="card__actions">
                                     <a href="/products/<%= product._id %>" class="btn">Details</a>
-                                    <% if (isAuthenticated) { %>
+                                    <% if (isAuthenticated && user.admin==0) { %>
                                         <%- include('../includes/add-to-cart.ejs', {product: product}) %>
                                     <% } %>
                                 </div>

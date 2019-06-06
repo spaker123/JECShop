@@ -7,6 +7,7 @@ exports.getProductsbyCategory = (req, res, next) => {
   Product.find({category:req.params.category})
     .then(products => {
       res.render('shop/product-list', {
+        user: req.user,
         prods: products,
         pageTitle: products.category + 'Products',
         path: '/products',
@@ -23,6 +24,7 @@ exports.getProducts = (req, res, next) => {
     .then(products => {
       console.log(products);
       res.render('shop/product-list', {
+        user: req.user,
         prods: products,
         pageTitle: 'All Products',
         path: '/products',
@@ -39,6 +41,7 @@ exports.getProduct = (req, res, next) => {
   Product.findById(prodId)
     .then(product => {
       res.render('shop/product-detail', {
+        user: req.user,
         product: product,
         pageTitle: product.title,
         path: '/products',
