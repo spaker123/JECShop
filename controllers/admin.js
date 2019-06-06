@@ -224,7 +224,7 @@ exports.postEditProduct = (req, res, next) => {
   let updatedImage ;
   const updatedDesc = req.body.description;
 
-  if (req.file.originalname){
+  if (req.file){
     params.Key = name+req.file.originalname;
     params.Body = req.file.buffer;
 
@@ -242,10 +242,29 @@ exports.postEditProduct = (req, res, next) => {
 
   Product.findById(prodId)
     .then(product => {
+      if (updatedImage){
+        var deleteImage= product.image;
+        var filename_d=deleteImage.slice(deleteImage.lastIndexOf('/')+1,deleteImage.length);
+     
+        var params_d = {
+          Bucket: params.Bucket,
+          Key: filename_d
+      };
+    
+      s3Client.deleteObject(params_d, function (err, data) {
+        if (data) {
+            console.log("S3 object deleted successfully");
+        }
+        else {
+            console.log("Check if you have sufficient permissions : "+err);
+        }
+      });
+      product.image = updatedImage;
+    }
+      product.category=updatedCate;
       product.title = updatedTitle;
       product.price = updatedPrice;
       product.description = updatedDesc;
-      product.image = updatedImage;
       return product.save();
     })
     .then(result => {
@@ -273,11 +292,11 @@ exports.getProducts = (req, res, next) => {
 
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  Product.findOneAndRemove(prodId)
+
+  Product.findOneAndDelete(prodId)
     .then(product =>{
       var updatedImage= product.image;
       var filename=updatedImage.slice(updatedImage.lastIndexOf('/')+1,updatedImage.length);
-      console.log(filename);
       var params_d = {
         Bucket: params.Bucket,
         Key: filename
