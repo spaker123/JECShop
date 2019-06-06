@@ -1,6 +1,10 @@
 const Product = require('../models/product');
 const Order = require('../models/order');
-const Category = require('../models/category');
+const stripe_config = require('../config/stripe.js');
+const stripe = require("stripe")(stripe_config.SE_ID);
+
+
+
 
 exports.getProductsbyCategory = (req, res, next) => {
 
@@ -56,6 +60,7 @@ exports.getIndex = (req, res, next) => {
     .then(products => {
       res.render('shop/index', {
         user: req.user,
+        prods: products,
         pageTitle: 'Shop',
         path: '/',
         isAuthenticated: req.session.isLoggedIn
@@ -105,6 +110,8 @@ exports.postCartDeleteProduct = (req, res, next) => {
 };
 
 exports.postOrder = (req, res, next) => {
+  const token = req.body.stripeToken; 
+  let totalSum = 0;
   req.user
     .populate('cart.items.productId')
     .execPopulate()
@@ -122,9 +129,18 @@ exports.postOrder = (req, res, next) => {
       return order.save();
     })
     .then(result => {
+
+    const charge = stripe.charges.create({
+        amount: totalSum * 100,
+        currency: 'usd',
+        description: 'Demo Order',
+        source: token,
+        metadata: { order_id: result._id.toString() }
+      });
+
       return req.user.clearCart();
     })
-    .then(() => {
+    .then((result) => {
       res.redirect('/orders');
     })
     .catch(err => console.log(err));
@@ -138,6 +154,27 @@ exports.getOrders = (req, res, next) => {
         pageTitle: 'Your Orders',
         orders: orders,
         isAuthenticated: req.session.isLoggedIn
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+exports.getCheckout = (req, res, next) => {
+  req.user
+    .populate('cart.items.productId')
+    .execPopulate()
+    .then(user => {
+      const products = user.cart.items;
+      let total = 0;
+      products.forEach(p => {
+        total += p.quantity * p.productId.price;
+      });
+      res.render('shop/checkout', {
+        path: '/checkout',
+        pageTitle: 'checkout',
+        products: products,
+        totalSum: total,
+        isAuthenticated: req.session.isLoggedIn        
       });
     })
     .catch(err => console.log(err));
