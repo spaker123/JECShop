@@ -3,11 +3,12 @@
 </head>
 
 <body>
-    <% if (isAuthenticated && user.admin==1) { %>
-        <%- include('../includes/Admin_navigation.ejs') %>
-        <% } else { %>
-            <%- include('../includes/navigation.ejs') %>
-            <% } %>
+
+        <% if (isAuthenticated && user.admin==1) { %>
+    <%- include('../includes/Admin_navigation.ejs') %>
+    <% } else { %>
+        <%- include('../includes/navigation.ejs') %>
+        <% } %>
 
     <div class="row">
         <div class="col-xs-12 col-md-3">
@@ -40,19 +41,16 @@
                         </div>
                         <div class="card__actions">
                             <a href="/products/<%= product._id %>" class="btn">Details</a>
-                                  <% if (isAuthenticated && user.admin== 0) { %>
+                                    <% if (isAuthenticated && user.admin== 0) { %>
                                 <%- include('../includes/add-to-cart.ejs', {product: product}) %>
                             <% } %>
                         </div>
                     </article>
                 <% } %>
             </div>
-        <% } else { %>
-            <h1>No Products Found!</h1>
-        <% } %>
-        <%- include('../includes/pagination.ejs', {currentPage: currentPage, nextPage: nextPage, previousPage: previousPage, lastPage: lastPage, hasNextPage: hasNextPage, hasPreviousPage: hasPreviousPage}) %>
-        <% } else { %>
-            <h1>No Products Found!</h1>
-        <% } %>
+            <%- include('../includes/pagination.ejs', {currentPage: currentPage, nextPage: nextPage, previousPage: previousPage, lastPage: lastPage, hasNextPage: hasNextPage, hasPreviousPage: hasPreviousPage}) %>
+            <% } else { %>
+                <h1>No Products Found!</h1>
+            <% } %>
     </main>
 <%- include('../includes/end.ejs') %>
