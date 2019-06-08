@@ -2,7 +2,7 @@ const Product = require('../models/product');
 const Order = require('../models/order');
 const stripe_config = require('../config/stripe.js');
 const stripe = require("stripe")(stripe_config.SE_ID);
-
+const recommend = require('../util/recommend');
 const paypal = require('paypal-rest-sdk');
 const paypal_config = require('../config/paypal.js');
 
@@ -60,7 +60,7 @@ exports.getProducts = (req, res, next) => {
       .limit(ITEMS_PER_PAGE);
   })
     .then(products => {
-      console.log(products);
+      //console.log(products);
       res.render('shop/product-list', {
         user: req.user,
         prods: products,
@@ -132,15 +132,27 @@ exports.getCart = (req, res, next) => {
     .execPopulate()
     .then(user => {
       const products = user.cart.items;
-      res.render('shop/cart', {
-        path: '/cart',
-        pageTitle: 'Your Cart',
-        products: products,
-        isAuthenticated: req.session.isLoggedIn
+
+      recommend((error, productData) => {
+        if (error) {
+          return console.log(error);
+      }  
+      Product.find( {_id: {$in: productData.body}} )
+      .then(rec => {
+        res.render('shop/cart', {
+          path: '/cart',
+          pageTitle: 'Your Cart',
+          products: products,
+          recprods:rec,
+          isAuthenticated: req.session.isLoggedIn
+        });
       });
+      }) 
     })
     .catch(err => console.log(err));
 };
+
+
 
 exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
@@ -149,7 +161,7 @@ exports.postCart = (req, res, next) => {
       return req.user.addToCart(product);
     })
     .then(result => {
-      console.log(result);
+      //console.log(result);
       res.redirect('/cart');
     });
 };
