@@ -1,17 +1,17 @@
 <%- include('../includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/product.css">
+    <!-- <link rel="stylesheet" href="/css/product.css"> -->
 </head>
-
 <body>
-
+<div class="container">
         <% if (isAuthenticated && user.admin==1) { %>
     <%- include('../includes/Admin_navigation.ejs') %>
     <% } else { %>
         <%- include('../includes/navigation.ejs') %>
         <% } %>
 
-    <div class="row">
-        <div class="col-xs-12 col-md-3">
+
+    <!-- <div class="row">
+        <div class="col-xs-12 col-md-2">
             <h3>Categories</h3>
             <ul class="list-group">
                 <li class="list-group-item"><a href="/products">All products</a></li>
@@ -20,9 +20,8 @@
                 <% }); %>
             </ul>
         </div>
-        <div class="col-xs-12 col-md-1"></div>
-        <div class="col-xs-12 col-md-8">
 
+        <div class="col-xs-12 col-md-8">
     <main>
         <% if (prods.length > 0) { %>
             <div class="grid">
@@ -52,5 +51,6 @@
             <% } else { %>
                 <h1>No Products Found!</h1>
             <% } %>
-    </main>
+    </main> -->
+</div>
 <%- include('../includes/end.ejs') %>

@@ -1,15 +1,16 @@
 <%- include('../includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/product.css">
+    <!-- <link rel="stylesheet" href="/css/product.css"> -->
     </head>
 
     <body>
+     <div class="container">
         <% if (isAuthenticated && user.admin==1) { %>
             <%- include('../includes/Admin_navigation.ejs') %>
             <% } else { %>
                 <%- include('../includes/navigation.ejs') %>
                 <% } %>
 
-            <main>
+            <!-- <main>
                 <% if (prods.length > 0) { %>
                     <div class="grid">
                         <% for (let product of prods) { %>
@@ -43,7 +44,8 @@
                     <% } else { %>
                         <h1>No Products Found!</h1>
                         <% } %>
-            </main>
+            </main> -->
+        </div>
             <%- include('../includes/end.ejs') %>
 
             
