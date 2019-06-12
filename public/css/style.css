@@ -1,0 +1,94 @@
+.service{
+    padding: 60px 0;
+    border-bottom: 1px solid #009A86;
+  
+  }
+  
+  .service .single-item .fa-4{
+    font-size: 50px;
+    color: #009A86;
+    left: 60px;
+    position: absolute;
+    top: 15px;
+  }
+  
+  
+  .footer-area {
+    background:rgb(231, 228, 228);
+    padding: 11px 0;  
+  }
+  
+  .footer-border-right {
+    border-right: 1px solid #3b3b3b;
+  }
+  
+  
+  .social-icon ul {
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  .social-icon ul li {
+    color: #ddd;
+    display: inline;
+    float: left;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 35px;
+    margin-right: 10px;
+    overflow: hidden;
+    padding: 11px 0;
+  }
+  
+  .social-icon ul li a {
+    border: 1px solid #262b32;
+    border-radius: 100%;
+    color: #262b32;
+    display: block;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    width: 35px;
+  }
+  
+  .social-icon ul li a:hover {
+  border-color: #3acaff;
+  color: #3acaff;
+  }
+  
+  h3.footer-widget-title {
+    color: #c38749;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+  }
+
+
+  .section-title {
+    margin-bottom: 40px;
+    position: relative;
+    text-align: center;
+}
+
+.section-title h4 {
+    display: inline-block;
+    padding: 0 10px;
+    position: relative;
+    color: #262b32;
+    font-size: 30px;
+    font-weight: 600;
+
+}
+
+.footer-info.contact ul li {
+    position: relative;
+    list-style: none;
+}
+
+.footer-end {
+    text-align: center;
+    color: #262b32;
+    font-size: 10px;  
+}
