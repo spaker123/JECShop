@@ -3,25 +3,25 @@
     <link rel="stylesheet" href="/css/auth.css"> -->
 </head>
 
-<body>
-<div class="container">    
+<body>  
    <%- include('../includes/navigation.ejs') %>
+   <main>
+     <div class="form-bg">  
+        <form class="login-form" action="/login" method="POST">  
+          <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required autofocus>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+          <div class="checkbox mb-3">
+            <label>
+                    <a href="/reset">Reset Password</a>
+            </label>
+          </div>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+         </form>
+     </div>    
+    </main>
 
-    <!-- <main>
-        <form class="login-form" action="/login" method="POST">
-            <div class="form-control">
-                <label for="email">E-Mail</label>
-                <input type="email" name="email" id="email">
-            </div>
-            <div class="form-control">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password">
-            </div>
-            <button class="btn" type="submit">Login</button>
-        </form>
-        <div class="centered">
-            <a href="/reset">Reset Password</a>
-        </div>
-    </main> -->
-</div>    
+  
 <%- include('../includes/end.ejs') %>
