@@ -3,7 +3,7 @@
 </head>
 <body>
 <div class="container-fluid"></div>
-        <% if (isAuthenticated && user.admin==1) { %>
+    <% if (isAuthenticated && user.admin==1) { %>
     <%- include('../includes/Admin_navigation.ejs') %>
     <% } else { %>
         <%- include('../includes/navigation.ejs') %>
@@ -59,107 +59,7 @@
                       </div>
                     </div>
                   </section>       
-
-     
-                  <div class="album py-4 bg-light">
-                        <div class="container">
-                          <div class="section-title mt-5">
-                            <h4>You May Also Like....</h4>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-4">
-                              <div class="card mb-4 shadow-sm">
-                                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                                <div class="card-body">
-                                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                  <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                 
-                            <div class="col-md-4">
-                              <div class="card mb-4 shadow-sm">
-                                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                                <div class="card-body">
-                                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                  <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                  
-                            <div class="col-md-4">
-                              <div class="card mb-4 shadow-sm">
-                                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                                <div class="card-body">
-                                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                  <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
- </div>
-  
-    
-
-    <!-- <div class="row">
-        <div class="col-xs-12 col-md-2">
-            <h3>Categories</h3>
-            <ul class="list-group">
-                <li class="list-group-item"><a href="/products">All products</a></li>
-                <% categories.forEach(function(c){ %>
-                    <li class="list-group-item"><a href="/products/category/<%= c.slug %>"><%= c.title %></a></li>
-                <% }); %>
-            </ul>
-        </div>
-
-        <div class="col-xs-12 col-md-8">
-    <main>
-        <% if (prods.length > 0) { %>
-            <div class="grid">
-                <% for (let product of prods) { %>
-                    <article class="card product-item">
-                        <header class="card__header">
-                            <h1 class="product__title"><%= product.title %></h1>
-                        </header>
-                        <div class="card__image">
-                            <img src="<%= product.image %>"
-                                alt="<%= product.title %>">
-                        </div>
-                        <div class="card__content">
-                            <h2 class="product__price">$<%= product.price %></h2>
-                            <p class="product__description"><%= product.description %></p>
-                        </div>
-                        <div class="card__actions">
-                            <a href="/products/<%= product._id %>" class="btn">Details</a>
-                                    <% if (isAuthenticated && user.admin== 0) { %>
-                                <%- include('../includes/add-to-cart.ejs', {product: product}) %>
-                            <% } %>
-                        </div>
-                    </article>
-                <% } %>
-            </div>
-            <%- include('../includes/pagination.ejs', {currentPage: currentPage, nextPage: nextPage, previousPage: previousPage, lastPage: lastPage, hasNextPage: hasNextPage, hasPreviousPage: hasPreviousPage}) %>
-            <% } else { %>
-                <h1>No Products Found!</h1>
-            <% } %>
-    </main> -->
 </div>
+
+<%- include('../includes/rec-product.ejs') %>   
 <%- include('../includes/end.ejs') %>

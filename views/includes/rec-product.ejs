@@ -1,8 +1,66 @@
-<div>
+<!-- <div>
 <% recprods.forEach(p => { %>           
     <h4><%= p.title %></h4>
     <img src="<%= p.image %>" alt="<%= p.title %>">
     <a href="/products/<%= p._id %>" class="btn">Details</a>
 <% }) %>
 
-</div>
+</div> -->
+
+
+<!-- <div class="album py-4 bg-light">
+        <div class="container">
+          <div class="section-title mt-5">
+            <h4>You May Also Like....</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm product-item">
+                 <% recprods.forEach(p => { %>    
+                    <p class ="product__title"><%= p.title %></p>
+                <img class="card-img-top" src="<%= p.image %>" alt="<%= p.title %>">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Detail</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Add to Favorite</button>
+                    </div>
+                    <small class="text-muted product__price">$ <%= p.price %></small>
+                  </div>
+                </div>
+              </div>
+              <% }) %>
+            </div>
+</div> -->
+
+
+
+     <section class="album py-5 bg-light">
+        <div class="container">
+          <div class="section-title mt-5">
+            <h4>You May Also Like....</h4>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="card-deck">
+             <% recprods.forEach(p => { %>                   
+             <div class="col-md-4">
+ 
+                    <img class="card-img-top product-img" src="<%= p.image %>" alt="<%= p.title %>">
+                    <div class="card-body">
+                            <p class ="product__title"><%= p.title %></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Detail</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Add to Favorite</button>
+                              </div>
+                              <small class="text-muted product__price">$ <%= p.price %></small>
+                            </div>
+                          </div>      
+             </div>
+             <% }) %>
+            </div>          
+          </div>
+        </div>
+
+      </section> 
