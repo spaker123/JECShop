@@ -33,8 +33,6 @@
             </div>
 </div> -->
 
-
-
      <section class="album py-5 bg-light">
         <div class="container">
           <div class="section-title mt-5">
@@ -51,7 +49,7 @@
                             <p class ="product__title"><%= p.title %></p>
                             <div class="d-flex justify-content-between align-items-center">
                               <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Detail</button>
+                                <button type="button" data-target="#productModal" data-toggle="modal" class="btn btn-sm btn-outline-secondary">Detail</button>
                                 <button type="button" class="btn btn-sm btn-outline-secondary">Add to Favorite</button>
                               </div>
                               <small class="text-muted product__price">$ <%= p.price %></small>
@@ -64,3 +62,56 @@
         </div>
 
       </section> 
+
+
+      <div class="modal fade product-detail-modal" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Product</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="container-fluid">
+                    <div class="row d-flex justify-content-center justify-sm-content-start">
+                      <div class="col-10 col-sm-6 mb-3">
+
+                      </div>
+                      <div class="col-12  col-sm-6">
+                        <div class="product-info">
+                            <h1> </h1>
+                            <p class="price">$</p>
+                            <div class="quick-add-to-cart">
+                                <form method="post" class="cart">
+                                    <input type="number" id="french-hens" value="3">
+                                    <button class="single_add_to_cart_button" type="submit">Add to cart</button>
+                                </form>
+                            </div>
+                            <div class="quick-desc">
+                           
+                            </div>
+                            <div class="social-sharing">
+                                <div class="widget">
+                                    <h3 class="widget-title-modal">Share to ...</h3>
+                                    <ul class="social-icons">
+                                        <li><a target="_blank" title="Facebook" href="#" class="facebook social-icon"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a target="_blank" title="Twitter" href="#" class="twitter social-icon"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a target="_blank" title="Pinterest" href="#" class="pinterest social-icon"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a target="_blank" title="Google +" href="#" class="gplus social-icon"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a target="_blank" title="LinkedIn" href="#" class="linkedin social-icon"><i class="fa fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
