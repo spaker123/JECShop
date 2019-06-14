@@ -5,7 +5,7 @@
 
 <body>
    <%- include('../includes/navigation.ejs') %>
-   <div class="container">
+
     <!-- <main>
         <form class="login-form" action="/signup" method="POST">
             <div class="form-control">
@@ -23,5 +23,26 @@
             <button class="btn" type="submit">Signup</button>
         </form>
     </main> -->
-    </div>
+ 
+    <main>
+        <div class="form-nobg">  
+           <form class="form-signin" action="/signup" method="POST">  
+             <h1 class="h3 mb-3 font-weight-normal"><b>Please Signup</b></h1>
+             <label for="inputEmail" class="sr-only">Email address</label>
+             <br>
+             <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required autofocus>
+             <label for="inputPassword" class="sr-only">Password</label>
+             <br>
+             <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+             <label for="confirmPassword" class="sr-only">Confirm Password</label>
+             <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+
+             <button class="btn btn-lg btn-primary btn-block" type="submit">Signup</button>
+            </form>
+        </div>    
+   
+       </main>
+   
+
+
 <%- include('../includes/end.ejs') %>
