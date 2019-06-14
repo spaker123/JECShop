@@ -27,19 +27,15 @@
             </li>
         <% } %>
         <% if (isAuthenticated && user.admin==1) { %>
-             
-          <li class="nav-item">
-              <a class="<%= path === '/admin/add-product' ? 'active' : '' %> nav-link" href="/admin/add-product">Add Product
-              </a>
-          </li>
-          <li class="nav-item">
-              <a class="<%= path === '/admin/products' ? 'active' : '' %> nav-link" href="/admin/products">Admin Products
-              </a>
-          </li>
-          <li class="nav-item">
-              <a class="<%= path === '/admin/categories' ? 'active' : '' %> nav-link" href="/admin/categories">Admin Categories
-              </a>
-          </li>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Area</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+                <a class="<%= path === '/admin/add-product' ? 'active' : '' %> dropdown-item" href="/admin/add-product">Add Product</a>
+                <a class="<%= path === '/admin/products' ? 'active' : '' %> dropdown-item" href="/admin/products">Admin Products</a>
+                <a class="<%= path === '/admin/categories' ? 'active' : '' %> dropdown-item" href="/admin/categories">Add Categories</a>
+            </div>
+          </li>      
       <% } %>
 
         </ul>
@@ -67,7 +63,7 @@
         </ul>
         <form class="form-inline mt-2 mt-md-0">
           <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> -->
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i> Search</button>
         </form>
 
      

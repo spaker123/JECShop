@@ -16,7 +16,8 @@ exports.getCategories = (req, res, next) => {
       categories: categories,
       pageTitle: 'Admin Categories',
       path: '/admin/categories',
-      isAuthenticated: req.session.isLoggedIn
+      isAuthenticated: req.session.isLoggedIn,
+      user: req.user
   });
   })
   .catch(err => console.log(err)); 
@@ -27,7 +28,8 @@ exports.getAddCategory = (req, res, next) => {
   res.render('admin/add-category', {
     pageTitle: 'Add Category',
     path: '/admin/add-category',
-    isAuthenticated: req.session.isLoggedIn
+    isAuthenticated: req.session.isLoggedIn,
+    user: req.user
   });
 };
 
@@ -84,7 +86,8 @@ exports.postAddCategory = (req, res, next) => {
           path: '/admin/edit-category',
           title: category.title,
           id: category._id,
-          isAuthenticated: req.session.isLoggedIn
+          isAuthenticated: req.session.isLoggedIn,
+          user: req.user
         });
       })
       .catch(err => console.log(err));
@@ -148,7 +151,8 @@ exports.getAddProduct = (req, res, next) => {
     path: '/admin/add-product',
     categories: categories,
     editing: false,
-    isAuthenticated: req.session.isLoggedIn
+    isAuthenticated: req.session.isLoggedIn,
+    user: req.user
   });
 });
 };
@@ -211,7 +215,8 @@ exports.getEditProduct = (req, res, next) => {
         path: '/admin/edit-product',
         editing: editMode,
         product: product,
-        isAuthenticated: req.session.isLoggedIn
+        isAuthenticated: req.session.isLoggedIn,
+        user: req.user
       });
     })
     .catch(err => console.log(err));
@@ -284,7 +289,8 @@ exports.getProducts = (req, res, next) => {
         prods: products,
         pageTitle: 'Admin Products',
         path: '/admin/products',
-        isAuthenticated: req.session.isLoggedIn
+        isAuthenticated: req.session.isLoggedIn,
+        user: req.user
       });
     })
     .catch(err => console.log(err));
