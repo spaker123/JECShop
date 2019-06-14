@@ -2,11 +2,9 @@
     </head>
 
     <body>
-        <% if (isAuthenticated && user.admin==1) { %>
-            <%- include('../includes/Admin_navigation.ejs') %>
-            <% } else { %>
+
                 <%- include('../includes/navigation.ejs') %>
-                <% } %>
+               
         <main class="centered">
             <h1><%= product.title %></h1>
             <hr>

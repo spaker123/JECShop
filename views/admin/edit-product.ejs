@@ -20,7 +20,7 @@
 
 </script>
 <body>
-    <%- include('../includes/Admin_navigation.ejs') %>
+    <%- include('../includes/navigation.ejs') %>
 
     <main>
         <form class="product-form" enctype="multipart/form-data" action="/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>" method="POST">

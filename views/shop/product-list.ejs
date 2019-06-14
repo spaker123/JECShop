@@ -1,14 +1,9 @@
 <%- include('../includes/head.ejs') %>
     <!-- <link rel="stylesheet" href="/css/product.css"> -->
     </head>
-
     <body>
      <div class="container">
-        <% if (isAuthenticated && user.admin==1) { %>
-            <%- include('../includes/Admin_navigation.ejs') %>
-            <% } else { %>
                 <%- include('../includes/navigation.ejs') %>
-                <% } %>
 
             <!-- <main>
                 <% if (prods.length > 0) { %>

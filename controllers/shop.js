@@ -137,7 +137,8 @@ exports.getCart = (req, res, next) => {
           pageTitle: 'Your Cart',
           products: products,
           recprods:rec,
-          isAuthenticated: req.session.isLoggedIn
+          isAuthenticated: req.session.isLoggedIn,
+          user: req.user
         });
       });
       }) 
@@ -291,7 +292,8 @@ exports.getOrders = (req, res, next) => {
         path: '/orders',
         pageTitle: 'Your Orders',
         orders: orders,
-        isAuthenticated: req.session.isLoggedIn
+        isAuthenticated: req.session.isLoggedIn,
+        user: req.user
       });
     })
     .catch(err => console.log(err));

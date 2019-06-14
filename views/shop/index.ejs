@@ -3,11 +3,9 @@
 </head>
 <body>
 <div class="container-fluid"></div>
-    <% if (isAuthenticated && user.admin==1) { %>
-    <%- include('../includes/Admin_navigation.ejs') %>
-    <% } else { %>
+
         <%- include('../includes/navigation.ejs') %>
-        <% } %>
+  
 
     
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

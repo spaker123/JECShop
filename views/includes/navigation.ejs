@@ -16,7 +16,7 @@
             <a class="<%= path === '/products' ? 'active' : '' %> nav-link" href="/products">
                 <i class="fa fa-heart"></i> Products</a>
           </li>
-          <% if (isAuthenticated) { %>
+          <% if (isAuthenticated)  { %>
             <li class="nav-item">
                 <a class="<%= path === '/cart' ? 'active' : '' %> nav-link" href="/cart">
                     <i class="fa fa-shopping-cart"></i> Cart</a>
@@ -26,6 +26,22 @@
                     <i class="fa fa-folder-open"></i> Orders</a>
             </li>
         <% } %>
+        <% if (isAuthenticated && user.admin==1) { %>
+             
+          <li class="nav-item">
+              <a class="<%= path === '/admin/add-product' ? 'active' : '' %> nav-link" href="/admin/add-product">Add Product
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="<%= path === '/admin/products' ? 'active' : '' %> nav-link" href="/admin/products">Admin Products
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="<%= path === '/admin/categories' ? 'active' : '' %> nav-link" href="/admin/categories">Admin Categories
+              </a>
+          </li>
+      <% } %>
+
         </ul>
         <ul class="navbar-nav ml-auto">
         <% if (!isAuthenticated) { %>
@@ -43,7 +59,11 @@
                 <button class="btn btn-outline-success my-2 my-sm-0 logoutBtn" type="submit"><i class="fa fa-share-square-o"></i> Logout</button>
             </form>
             
-        <% } %>
+        <% } %> 
+
+
+
+
         </ul>
         <form class="form-inline mt-2 mt-md-0">
           <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> -->
