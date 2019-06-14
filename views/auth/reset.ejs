@@ -1,19 +1,23 @@
 <%- include('../includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/forms.css">
-    <link rel="stylesheet" href="/css/auth.css">
+
 </head>
 
 <body>
    <%- include('../includes/navigation.ejs') %>
 
-    <main>
 
-        <form class="login-form" action="/reset" method="POST">
-            <div class="form-control">
-                <label for="email">E-Mail</label>
-                <input type="email" name="email" id="email">
-            </div>
-            <button class="btn" type="submit">Reset Password</button>
-        </form>
-    </main>
+
+    <main>
+        <div class="form-nobg">  
+           <form class="form-signin" action="/reset" method="POST">  
+            <h1 class="h3 mb-3 font-weight-normal"><b>Reset Password</b></h1>
+             <label for="inputEmail" class="sr-only">Input Email address</label>
+             <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required autofocus>
+             <br>
+             <button class="btn btn-lg btn-primary btn-block" type="submit">Send</button>
+            </form>
+        </div>    
+       </main>
+
+
 <%- include('../includes/end.ejs') %>

@@ -294,3 +294,7 @@
 .modal .widget .social-icons li .social-icon:hover {
   color: #ffffff;
 }
+
+.logoutBtn{
+  margin: 0.5rem;
+}
