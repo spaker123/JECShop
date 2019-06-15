@@ -1,9 +1,138 @@
 <%- include('../includes/head.ejs') %>
-    <!-- <link rel="stylesheet" href="/css/product.css"> -->
+    <link rel="stylesheet" href="/css/product.css">
     </head>
     <body>
      <div class="container">
                 <%- include('../includes/navigation.ejs') %>
+
+
+ <div class="product-bg">                 
+
+
+
+  <!-- Product List -->    
+  <section class="list-content">
+    <div class="container">
+      <div class="row">
+        <!-- Left Filter Area -->
+        <div class="col-12 col-sm-3">
+          <div class="widget-title">
+            <p>Product Category</p>
+          </div>
+          <div class="left-widget-content">
+            <div class="enabled-filters widget">
+                <h3 class="widget-subtitle">Filter：</h3>
+                <ul>
+                    <li>Category: makeup<a href="#" title="Cancel"><i class="fa fa-remove float-right"></i></a>
+                    </li>
+                    <li>price：$50~$100<a href="#" title="Cancel"><i class="fa fa-remove float-right"></i></a>
+
+                </ul>
+            </div>
+            <div class="left-widget-price widget">
+                <h3 class="widget-subtitle">Price</h3>
+                <div class="info-widget">
+                    <div class="price-filter">
+                        <div class="price-slider-amount">
+                            <label>Range：</label>
+                            <input type="text" name="price" placeholder="Add Your Price" class="price-input">
+                        </div>
+                        <div id="slider-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-corner-all"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span></div>
+                    </div>                                    
+                </div>
+            </div>
+            <div class="left-widget-size widget">
+                <h3 class="widget-subtitle">Brand</h3>
+                <div class="widget-info">
+                    <ul>
+                        <li>
+                            <input type="checkbox">
+                            <a href="#">Pandora（4）</a>
+                        </li>
+                        <li>
+                            <input type="checkbox">
+                            <a href="#">MAC（5）</a>
+                        </li>
+                        <li>
+                            <input type="checkbox">
+                            <a href="#">Kiehls（3）</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+          </div>   
+            
+        </div>
+
+        <!-- Products -->
+        <div class="col-12 col-sm-9">
+          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item  d-none d-sm-inline-block">
+              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Sort by Price</a>
+            </li>
+            <li class="nav-item  d-none d-sm-inline-block">
+              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Sort by Newest</a>
+            </li>
+          </ul>
+          <div class="btn-toolbar  d-none d-sm-block" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+              <button type="button" class="btn btn-secondary">1</button>
+              <button type="button" class="btn btn-secondary">2</button>
+              <button type="button" class="btn btn-secondary">3</button>
+              <button type="button" class="btn btn-secondary">4</button>
+            </div>
+            <div class="btn-group mr-2" role="group" aria-label="Second group">
+              <button type="button" class="btn btn-secondary">5</button>
+              <button type="button" class="btn btn-secondary">6</button>
+              <button type="button" class="btn btn-secondary">7</button>
+            </div>
+            <div class="btn-group" role="group" aria-label="Third group">
+              <button type="button" class="btn btn-secondary">8</button>
+            </div>
+          </div>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+              <div class="row">
+                <div class="col-12 col-sm-4 mb-3">
+                  <div class="thumbnail  bg-light rounded p-3 mr-2 clearfix">
+                      <img src="images/features-p1.jpg" alt="" class="img-fluid">
+                      <h4 class="mt-2">Title</h4>
+                      <div class="rating-icon float-left">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+                      <div class="float-right">
+                        <span class="new-price">Price</span>
+                      </div>
+                  </div>
+                </div>
+              </div>              
+            </div>
+    
+          </div>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end my-3">
+              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a></li>
+            </ul>
+          </nav>            
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>  
+</div>
+
 
             <!-- <main>
                 <% if (prods.length > 0) { %>
@@ -40,7 +169,7 @@
                         <h1>No Products Found!</h1>
                         <% } %>
             </main> -->
-        </div>
+
             <%- include('../includes/end.ejs') %>
 
             

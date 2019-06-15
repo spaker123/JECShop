@@ -145,14 +145,15 @@ exports.postAddCategory = (req, res, next) => {
 
 
 exports.getAddProduct = (req, res, next) => { 
+  console.log('req',req.user);
   Category.find(function (err, categories) { 
   res.render('admin/edit-product', {
+    user: req.user,
     pageTitle: 'Add Product',
     path: '/admin/add-product',
     categories: categories,
     editing: false,
-    isAuthenticated: req.session.isLoggedIn,
-    user: req.user
+    isAuthenticated: req.session.isLoggedIn
   });
 });
 };

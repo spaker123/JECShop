@@ -143,6 +143,16 @@
 
   }
 
+  .product-bg {
+    padding-top: 100px;
+    padding-bottom: 100px;
+	  background-size: cover;
+    width: 100%; 
+
+  }
+
+
+
   
  .product-item {
     width: 20rem;
