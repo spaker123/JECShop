@@ -13,7 +13,7 @@ paypal.configure({
 });
 
 
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 5;
 
 exports.getProductsbyCategory = (req, res, next) => {
   const page = +req.query.page || 1;
