@@ -6,4 +6,3 @@ config/stripe.js
 config/paypal.js
 config/sendgrid.js
 public/dist
-public/images
