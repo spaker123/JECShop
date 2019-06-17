@@ -1,20 +1,63 @@
 <%- include('../includes/head.ejs') %>
-    </head>
+<link rel="stylesheet" href="/css/product.css">
+</head>
 
-    <body>
+<body>
+    <%- include('../includes/navigation.ejs') %>
 
-                <%- include('../includes/navigation.ejs') %>
-               
-        <main class="centered">
-            <h1><%= product.title %></h1>
-            <hr>
-            <div class="image">
-                <img src="<%= product.image %>" alt="<%= product.title %>">
+    <!-- <main class="centered">
+        <h1><%= product.title %></h1>
+        <hr>
+        <div class="image">
+            <img src="<%= product.image %>" alt="<%= product.title %>">
+        </div>
+        <h2><%= product.price %></h2>
+        <p><%= product.description %></p>
+        <% if (isAuthenticated && user.admin== 0) { %>
+        <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+        <% } %>
+    </main> -->
+
+
+    <main>   
+        <div class="container product-bg">
+            <div class="row">
+                <div class="col-sm-6">
+                    <img src="<%= product.image %>" alt="<%= product.title %>" class="img-fluid">
+                </div>
+                <div class="col-sm-6">
+                    <div class="product-info">
+                        <h3><%= product.title %></h3>
+                        <p class="price">$<%= product.price %></p>
+                        <div class="quick-add-to-cart">
+                            <% if (isAuthenticated && user.admin== 0) { %>  
+                            <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                            <% } %>
+                        </div>
+                        <div class="quick-desc">
+                            <p><%= product.description %></p>
+                        </div>
+                        <div class="social-sharing">
+                            <div class="widget">
+                                <h3 class="widget-title-modal">Share to ...</h3>
+                                <ul class="social-icons">
+                                    <li><a target="_blank" title="Facebook" href="#" class="facebook social-icon"><i
+                                                class="fa fa-facebook"></i></a></li>
+                                    <li><a target="_blank" title="Twitter" href="#" class="twitter social-icon"><i
+                                                class="fa fa-twitter"></i></a></li>
+                                    <li><a target="_blank" title="Pinterest" href="#" class="pinterest social-icon"><i
+                                                class="fa fa-pinterest"></i></a></li>
+                                    <li><a target="_blank" title="Google +" href="#" class="gplus social-icon"><i
+                                                class="fa fa-google-plus"></i></a></li>
+                                    <li><a target="_blank" title="LinkedIn" href="#" class="linkedin social-icon"><i
+                                                class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h2><%= product.price %></h2>
-            <p><%= product.description %></p>
-            <% if (isAuthenticated && user.admin== 0) { %>
-                <%- include('../includes/add-to-cart.ejs', {product: product}) %>
-            <% } %>
-        </main>
-        <%- include('../includes/end.ejs') %>
+        </div>
+    </main>
+
+    <%- include('../includes/end.ejs') %>

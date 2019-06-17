@@ -263,8 +263,47 @@
     width: 100%;
 }
 
-.modal .widget .social-icons li {
-    float: left;
+.widget .social-icons li {
+  float: left;
+  line-height: 30px;
+  list-style: outside none none;
+  margin: 0 10px 10px 0;
+}
+
+.widget .social-icons li .social-icon {
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  color: #909295;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
+  width: 40px;
+}
+
+.widget .social-icons li .social-icon.facebook:hover {
+background: #3b579d none repeat scroll 0 0;
+border: 1px solid #3b579d;
+}
+.widget .social-icons li .social-icon.twitter:hover {
+background: #3acaff none repeat scroll 0 0;
+border: 1px solid #3acaff;
+}
+.widget .social-icons li .social-icon.pinterest:hover {
+background: #cb2027 none repeat scroll 0 0;
+border: 1px solid #cb2027;
+}
+.widget .social-icons li .social-icon.gplus:hover {
+background: #d11717 none repeat scroll 0 0;
+border: 1px solid #d11717;
+}
+.widget .social-icons li .social-icon.linkedin:hover {
+background: #0097bd none repeat scroll 0 0;
+border: 1px solid #0097bd;
+}
+.widget .social-icons li .social-icon:hover {
+color: #ffffff;
+}    float: left;
     line-height: 30px;
     list-style: outside none none;
     margin: 0 10px 10px 0;

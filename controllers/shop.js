@@ -7,7 +7,7 @@ const paypal = require('paypal-rest-sdk');
 const paypal_config = require('../config/paypal.js');
 
 paypal.configure({
-  'mode': 'sandbox', 
+  'mode': 'sandbox',
   'client_id': paypal_config.PAYPAL_CLIENT_ID,
   'client_secret': paypal_config.PAYPAL_SECRET
 });
@@ -19,21 +19,21 @@ exports.getProductsbyCategory = (req, res, next) => {
   const page = +req.query.page || 1;
   let totalItems;
 
-  Product.find({category:req.params.category})
-  .countDocuments()
-  .then(numProducts => {
-    totalItems = numProducts;
-    return Product.find({category:req.params.category})
-      .skip((page - 1) * ITEMS_PER_PAGE)
-      .limit(ITEMS_PER_PAGE);
-  })
+  Product.find({ category: req.params.category })
+    .countDocuments()
+    .then(numProducts => {
+      totalItems = numProducts;
+      return Product.find({ category: req.params.category })
+        .skip((page - 1) * ITEMS_PER_PAGE)
+        .limit(ITEMS_PER_PAGE);
+    })
     .then(products => {
       res.render('shop/product-list', {
         user: req.user,
         prods: products,
         pageTitle: products.category + 'Products',
         path: '/products',
-        isAuthenticated: req.session.isLoggedIn,          
+        isAuthenticated: req.session.isLoggedIn,
         currentPage: page,
         hasNextPage: ITEMS_PER_PAGE * page < totalItems,
         hasPreviousPage: page > 1,
@@ -52,13 +52,13 @@ exports.getProducts = (req, res, next) => {
   let totalItems;
 
   Product.find()
-  .countDocuments()
-  .then(numProducts => {
-    totalItems = numProducts;
-    return Product.find()
-      .skip((page - 1) * ITEMS_PER_PAGE)
-      .limit(ITEMS_PER_PAGE);
-  })
+    .countDocuments()
+    .then(numProducts => {
+      totalItems = numProducts;
+      return Product.find()
+        .skip((page - 1) * ITEMS_PER_PAGE)
+        .limit(ITEMS_PER_PAGE);
+    })
     .then(products => {
       //console.log(products);
       res.render('shop/product-list', {
@@ -66,7 +66,7 @@ exports.getProducts = (req, res, next) => {
         prods: products,
         pageTitle: 'All Products',
         path: '/products',
-        isAuthenticated: req.session.isLoggedIn,          
+        isAuthenticated: req.session.isLoggedIn,
         currentPage: page,
         hasNextPage: ITEMS_PER_PAGE * page < totalItems,
         hasPreviousPage: page > 1,
@@ -100,23 +100,23 @@ exports.getIndex = (req, res, next) => {
   recommend((error, productData) => {
     if (error) {
       return console.log(error);
-  }  
+    }
 
-  Product.find( {_id: {$in: productData.body}} )
-    .then(products => {
-      res.render('shop/index', {
-        user: req.user,
-        recprods: products,
-        pageTitle: 'Shop',
-        path: '/',
-        isAuthenticated: req.session.isLoggedIn,       
-  
-      });
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }) 
+    Product.find({ _id: { $in: productData.body } })
+      .then(products => {
+        res.render('shop/index', {
+          user: req.user,
+          recprods: products,
+          pageTitle: 'Shop',
+          path: '/',
+          isAuthenticated: req.session.isLoggedIn,
+
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  })
 };
 
 exports.getCart = (req, res, next) => {
@@ -129,19 +129,19 @@ exports.getCart = (req, res, next) => {
       recommend((error, productData) => {
         if (error) {
           return console.log(error);
-      }  
-      Product.find( {_id: {$in: productData.body}} )
-      .then(rec => {
-        res.render('shop/cart', {
-          path: '/cart',
-          pageTitle: 'Your Cart',
-          products: products,
-          recprods:rec,
-          isAuthenticated: req.session.isLoggedIn,
-          user: req.user
-        });
-      });
-      }) 
+        }
+        Product.find({ _id: { $in: productData.body } })
+          .then(rec => {
+            res.render('shop/cart', {
+              path: '/cart',
+              pageTitle: 'Your Cart',
+              products: products,
+              recprods: rec,
+              isAuthenticated: req.session.isLoggedIn,
+              user: req.user
+            });
+          });
+      })
     })
     .catch(err => console.log(err));
 };
@@ -171,7 +171,7 @@ exports.postCartDeleteProduct = (req, res, next) => {
 };
 
 exports.postOrder = (req, res, next) => {
-  const token = req.body.stripeToken; 
+  const token = req.body.stripeToken;
   let totalSum = 0;
   req.user
     .populate('cart.items.productId')
@@ -191,7 +191,7 @@ exports.postOrder = (req, res, next) => {
     })
     .then(result => {
 
-    const charge = stripe.charges.create({
+      const charge = stripe.charges.create({
         amount: totalSum * 100,
         currency: 'usd',
         description: 'Demo Order',
@@ -212,42 +212,42 @@ exports.postOrder2 = (req, res, next) => {
   const create_payment_json = {
     "intent": "sale",
     "payer": {
-        "payment_method": "paypal"
+      "payment_method": "paypal"
     },
     "redirect_urls": {
-        "return_url": "http://localhost:3000/process",
-        "cancel_url": "http://localhost:3000/cancel"
+      "return_url": "http://localhost:3000/process",
+      "cancel_url": "http://localhost:3000/cancel"
     },
     "transactions": [{
-        "item_list": {
-            "items": [{
-                "price": "25.00",
-                "currency": "USD",
-                "quantity": 1
-            }]
-        },
-        "amount": {
-            "currency": "USD",
-            "total": "25.00"
-        },
-        "description": "paypal test"
+      "item_list": {
+        "items": [{
+          "price": "25.00",
+          "currency": "USD",
+          "quantity": 1
+        }]
+      },
+      "amount": {
+        "currency": "USD",
+        "total": "25.00"
+      },
+      "description": "paypal test"
     }]
 
   }
-  
 
-  paypal.payment.create(create_payment_json, function(error, payment){
+
+  paypal.payment.create(create_payment_json, function (error, payment) {
     if (error) {
       throw error;
-  } else {
-      for(let i = 0;i < payment.links.length;i++){
-        if(payment.links[i].rel === 'approval_url'){
+    } else {
+      for (let i = 0; i < payment.links.length; i++) {
+        if (payment.links[i].rel === 'approval_url') {
           res.redirect(payment.links[i].href);
         }
       }
       console.log(payment);
-  }
-});
+    }
+  });
 };
 
 exports.getOrderProcess = (req, res, next) => {
@@ -255,32 +255,32 @@ exports.getOrderProcess = (req, res, next) => {
   const paymentId = req.query.paymentId;
 
   console.log('payerId', payerId);
-  console.log('paymentId',paymentId);
+  console.log('paymentId', paymentId);
 
   const execute_payment_json = {
     "payer_id": payerId,
     "transactions": [{
-        "amount": {
-            "currency": "USD",
-            "total": "25.00"
-        }
+      "amount": {
+        "currency": "USD",
+        "total": "25.00"
+      }
     }]
   };
 
   paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
     if (error) {
-        console.log(error.response);
-        throw error;
+      console.log(error.response);
+      throw error;
     } else {
-        console.log(JSON.stringify(payment));
-        res.redirect('/orders');
+      console.log(JSON.stringify(payment));
+      res.redirect('/orders');
     }
-});
+  });
 }
 
 
 exports.getOrderCancel = (req, res, next) => {
- console.log('cancel');
+  console.log('cancel');
 }
 
 
@@ -314,7 +314,7 @@ exports.getCheckout = (req, res, next) => {
         pageTitle: 'checkout',
         products: products,
         totalSum: total,
-        isAuthenticated: req.session.isLoggedIn        
+        isAuthenticated: req.session.isLoggedIn
       });
     })
     .catch(err => console.log(err));
@@ -336,7 +336,7 @@ exports.getCheckout2 = (req, res, next) => {
         pageTitle: 'checkout2',
         products: products,
         totalSum: total,
-        isAuthenticated: req.session.isLoggedIn  
+        isAuthenticated: req.session.isLoggedIn
       });
     })
     .catch(err => console.log(err));

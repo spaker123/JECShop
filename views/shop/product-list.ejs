@@ -1,193 +1,164 @@
 <%- include('../includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/product.css">
-    </head>
-    <body>
-     <div class="container">
-                <%- include('../includes/navigation.ejs') %>
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+  <div class="container">
+    <%- include('../includes/navigation.ejs') %>
 
 
- <div class="product-bg">                 
+    <div class="product-bg">
 
-
-
-  <!-- Product List -->    
-  <section class="list-content">
-    <div class="container">
-      <div class="row">
-        <!-- Left Filter Area -->
-        <div class="col-12 col-sm-3">
-          <div class="widget-title">
-            <p>Product Category</p>
-          </div>
-          <div class="left-widget-content">
-            <div class="enabled-filters widget">
-                <h3 class="widget-subtitle">Filter：</h3>
-                <ul>
+      <!-- Product List -->
+      <section class="list-content">
+        <div class="container">
+          <div class="row">
+            <!-- Left Filter Area -->
+            <div class="col-12 col-sm-3">
+              <div class="widget-title">
+                <p>Product Category</p>
+              </div>
+              <div class="left-widget-content">
+                <div class="enabled-filters widget">
+                  <h3 class="widget-subtitle">Filter：</h3>
+                  <ul>
                     <li>Category: makeup<a href="#" title="Cancel"><i class="fa fa-remove float-right"></i></a>
                     </li>
                     <li>price：$50~$100<a href="#" title="Cancel"><i class="fa fa-remove float-right"></i></a>
 
-                </ul>
-            </div>
-            <div class="left-widget-price widget">
-                <h3 class="widget-subtitle">Price</h3>
-                <div class="info-widget">
+                  </ul>
+                </div>
+                <div class="left-widget-price widget">
+                  <h3 class="widget-subtitle">Price</h3>
+                  <div class="info-widget">
                     <div class="price-filter">
-                        <div class="price-slider-amount">
-                            <label>Range：</label>
-                            <input type="text" name="price" placeholder="Add Your Price" class="price-input">
-                        </div>
-                        <div id="slider-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-corner-all"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span></div>
-                    </div>                                    
-                </div>
-            </div>
-            <div class="left-widget-size widget">
-                <h3 class="widget-subtitle">Brand</h3>
-                <div class="widget-info">
-                    <ul>
-                        <li>
-                            <input type="checkbox">
-                            <a href="#">Pandora（4）</a>
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            <a href="#">MAC（5）</a>
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            <a href="#">Kiehls（3）</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="left-widget-size widget">
-                <h3 class="widget-subtitle">Category</h3>
-                <div class="widget-info">
-                    <ul>
-                        <li>
-                            <input type="checkbox">
-                            <a href="#">Makeup（4）</a>
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            <a href="#">Jewerly（5）</a>
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            <a href="#">Clothes（3）</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-          </div>   
-            
-        </div>
-
-        <!-- Products -->
-        <div class="col-12 col-sm-9">
-          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item  d-none d-sm-inline-block">
-              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Sort by Price</a>
-            </li>
-            <li class="nav-item  d-none d-sm-inline-block">
-              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Sort by Newest</a>
-            </li>
-            <li class="nav-item  d-none d-sm-inline-block">
-              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Sort by Popularity</a>
-            </li>
-        </ul>
-          <div class="d-none d-sm-block"> 
-            <h6>Showing 1-5 of 100 products</h6>  
-          </div>
-
-          <section class="album py-1">
-                <div class="container">
-               
-                 <% if (prods.length > 0) { %>      
-                  <div class="row justify-content-center">
-                    <div class="card-deck">
-                       <% for (let product of prods) { %>           
-                     <div class="col-md-4">
-                            <img class="card-img-top product-img" src="<%= product.image %>" alt="<%= product.title %>">
-                            <div class="card-body">
-                                    <p class ="product__title"><%= product.title %></p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                      <div class="btn-group">
-                                        <button type="button" data-target="#productModal" data-toggle="modal" class="btn btn-sm btn-outline-secondary" data-info ="<%= product._id %>">Detail</button>
-                                        <% if (isAuthenticated && user.admin==0) { %>
-                                            <%- include('../includes/add-to-cart.ejs', {product: product}) %>
-                                        <% } %>
-                                      </div>
-                                      <small class="text-muted product__price">$ <%= product.price %></small>
-                                    </div>
-                                  </div>      
-                     </div>
-                     <% } %>
-                     <% } else { %>
-                        <h1>No Products Found!</h1>
-                     <% } %>
-                    </div>          
+                      <div class="price-slider-amount">
+                        <label>Range：</label>
+                        <input type="text" name="price" placeholder="Add Your Price" class="price-input">
+                      </div>
+                      <div id="slider-range"
+                        class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div><span
+                          class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span><span
+                          class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-        
-              </section> 
+                <div class="left-widget-size widget">
+                  <h3 class="widget-subtitle">Brand</h3>
+                  <div class="widget-info">
+                    <ul>
+                      <li>
+                        <input type="checkbox">
+                        <a href="#">Pandora（4）</a>
+                      </li>
+                      <li>
+                        <input type="checkbox">
+                        <a href="#">MAC（5）</a>
+                      </li>
+                      <li>
+                        <input type="checkbox">
+                        <a href="#">Kiehls（3）</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="left-widget-size widget">
+                  <h3 class="widget-subtitle">Category</h3>
+                  <div class="widget-info">
+                    <ul>
+                      <li>
+                        <input type="checkbox">
+                        <a href="#">Makeup（4）</a>
+                      </li>
+                      <li>
+                        <input type="checkbox">
+                        <a href="#">Jewerly（5）</a>
+                      </li>
+                      <li>
+                        <input type="checkbox">
+                        <a href="#">Clothes（3）</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
 
-          <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-end my-3">
-              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                  <span class="sr-only">Next</span>
-                </a></li>
-            </ul>
-          </nav>            
-        </div>
-        </div>
-      </div>
-    </div>
-  </section>  
-</div>
+            </div>
 
+            <!-- Products -->
+            <div class="col-12 col-sm-9">
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item  d-none d-sm-inline-block">
+                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                    aria-controls="pills-home" aria-selected="true">Sort by Price</a>
+                </li>
+                <li class="nav-item  d-none d-sm-inline-block">
+                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                    aria-controls="pills-profile" aria-selected="false">Sort by Newest</a>
+                </li>
+                <li class="nav-item  d-none d-sm-inline-block">
+                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                    aria-controls="pills-profile" aria-selected="false">Sort by Popularity</a>
+                </li>
+              </ul>
+              <div class="d-none d-sm-block">
+                <h6>Showing 1-5 of 100 products</h6>
+              </div>
 
-            <!-- <main>
-                <% if (prods.length > 0) { %>
-                    <div class="grid">
-                        <% for (let product of prods) { %>
-                            <article class="card product-item">
-                                <header class="card__header">
-                                    <h1 class="product__title">
-                                        <%= product.title %>
-                                    </h1>
-                                </header>
-                                <div class="card__image">
-                                    <img src="<%= product.image %>" alt="<%= product.title %>">
-                                </div>
-                                <div class="card__content">
-                                    <h2 class="product__price">$
-                                        <%= product.price %>
-                                    </h2>
-                                    <p class="product__description">
-                                        <%= product.description %>
-                                    </p>
-                                </div>
-                                <div class="card__actions">
-                                    <a href="/products/<%= product._id %>" class="btn">Details</a>
-                                    <% if (isAuthenticated && user.admin==0) { %>
-                                        <%- include('../includes/add-to-cart.ejs', {product: product}) %>
-                                    <% } %>
-                                </div>
-                            </article>
-                            <% } %>
+              <section class="album py-1">
+                <div class="container">
+
+                  <% if (prods.length > 0) { %>
+                  <div class="row justify-content-center">
+                    <div class="card-deck">
+                      <% for (let product of prods) { %>
+                      <div class="col-md-4">
+                        <img class="card-img-top product-img" src="<%= product.image %>" alt="<%= product.title %>">
+                        <div class="card-body">
+                          <p class="product__title"><%= product.title %></p>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                              <a href="/products/<%= product._id %>" class="btn btn-sm btn-outline-secondary">Details</a>
+                              <% if (isAuthenticated && user.admin==0) { %>
+                              <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                              <% } %>
+                            </div>
+                            <small class="text-muted product__price">$ <%= product.price %></small>
+                          </div>
+                        </div>
+                      </div>
+                      <% } %>
+                      <% } else { %>
+                      <h1>No Products Found!</h1>
+                      <% } %>
                     </div>
-                    <%- include('../includes/pagination.ejs', {currentPage: currentPage, nextPage: nextPage, previousPage: previousPage, lastPage: lastPage, hasNextPage: hasNextPage, hasPreviousPage: hasPreviousPage}) %>                
-                    <% } else { %>
-                        <h1>No Products Found!</h1>
-                        <% } %>
-            </main> -->
+                  </div>
+                </div>
 
-            <%- include('../includes/end.ejs') %>
+              </section>
 
-            
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end my-3">
+                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Next</span>
+                    </a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+    </div>
+    </section>
+  </div>
+
+
+
+
+  <%- include('../includes/end.ejs') %>
