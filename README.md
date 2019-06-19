@@ -5,7 +5,9 @@ ejs, HTML, CSS, Javascript, MongoDB, Mongoose, AWS, Bootstrap 4*
 
 ## Main Feature ##
 
-The application serves as a content management system for the admin to add, edit, delete the products. A dashboard for the admin to monitor the trends and important factors of sale.
+The application includes authentication and role based access control-user and admin. 
+
+The application serves as a content management system for the admin have CRUD functions to add, edit, delete the products. A dashboard for the admin to focus on important factors of sales management.
 
 The end user can view the product as either an anonymous user or an authenticated user with a valid account.
 
